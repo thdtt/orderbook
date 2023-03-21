@@ -9,11 +9,30 @@ import java.util.List;
 import java.util.Set;
 
 public class Trade {
+
+    /**
+     * Function khớp các lệnh mua và bán
+     * @param side
+     * @param order
+     * @param price
+     * @param quantity
+     */
     public static void trade(Side side, OrderBook order, double price, int quantity) {
         if (side == Side.ASK) {
+
+            /**
+             * Lấy ra danh sách giá các lệnh bán
+             */
             Set<Double> ask_prices = order.getAskOffers().keySet();
             List<Double> ask_prices_list = new ArrayList<>(ask_prices);
             for (double ask_price : ask_prices_list) {
+
+                /**
+                 * Kiểm tra nếu như giá yêu cầu lớn hơn hoặc bằng giá lệnh bán
+                 * Sẽ trừ đi số lượng hiện có của offer bán, giảm số lượng mua yêu cầu
+                 * và tiếp tục đổi offer khác nếu số lượng mua yêu cầu vẫn còn
+                 * Do các lệnh bán được sort theo thứ tự tăng dần, nên phần tử đầu tiên lấy ra trong danh sách luôn có giá nhỏ nhất
+                 */
                 if (quantity > 0 && price >= ask_price) {
                     int ask_quantity = order.getAskOffers().get(ask_price);
                     if (quantity >= ask_quantity) {
@@ -35,6 +54,13 @@ public class Trade {
             Set<Double> bid_prices = order.getBidOffers().keySet();
             List<Double> bid_prices_list = new ArrayList<>(bid_prices);
             for (double bid_price : bid_prices_list) {
+
+                /**
+                 * Kiểm tra nếu như giá yêu cầu lớn hơn hoặc bằng giá lệnh mua
+                 * Sẽ trừ đi số lượng hiện có của offer mua, giảm số lượng bán yêu cầu
+                 * và tiếp tục đổi offer khác nếu số lượng bán yêu cầu vẫn còn
+                 * Do các lệnh mua được sort theo thứ tự giảm dần, nên phần tử đầu tiên lấy ra trong danh sách luôn có giá lớn nhất
+                 */
                 if (quantity > 0 && price <= bid_price) {
                     int bid_quantity = order.getBidOffers().get(bid_price);
                     if (quantity >= bid_quantity) {

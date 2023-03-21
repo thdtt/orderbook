@@ -6,8 +6,18 @@ import java.util.TreeMap;
 
 public class OrderBook {
 
+    /**
+     * @param bid_offers
+     * Map danh sách các lệnh mua
+     * Được khai báo với CTDL TreeMap implement SortedMap và là cây cân bằng
+     */
     private Map<Double, Integer> bidOffers = new TreeMap<>(Comparator.reverseOrder());
 
+    /**
+     * @param ask_offers
+     * Map danh sách các lệnh bán
+     * Được khai báo với CTDL TreeMap implement SortedMap và là cây cân bằng
+     */
     private Map<Double, Integer> askOffers = new TreeMap<>(Comparator.naturalOrder());
 
     public Map<Double, Integer> getBidOffers() {

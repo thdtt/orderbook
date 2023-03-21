@@ -10,3 +10,4 @@
 - Bid offers là các lệnh bán, cho nên bid offers sẽ được sắp xếp theo thứ tự giảm dần để các offers với mức giá mua cao nhất sẽ được sắp xếp ở đầu danh sách
 - Ask offers là các lệnh mua, cho nên ask offers sẽ được sắp xếp theo thứ tự tăng dần để các offers với mức giá bán thấp nhất sẽ được sắp xếp ở đầu danh sách
 ## 3. Implementation
+### **Chi tiết trong code**
